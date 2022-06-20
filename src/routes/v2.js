@@ -21,19 +21,13 @@ routerv2.param('model', (req, res, next) => {
 
 routerv2.get('/:model', bearerAuth, permissions('read'), handleGetAll);//for all users
 routerv2.get('/:model/:id', bearerAuth, permissions('read'), handleGetOne);//for all users
-
 routerv2.post('/:model', bearerAuth, permissions('createJob'), handleCreate);//for worker and admin
-// routerv2.post('/:model2', bearerAuth, permissions('createCompany'), handleCreate);//for compOwner and admin
-// routerv2.post('/:model2', bearerAuth, permissions('createMajor'), handleCreate);//for regOfficer and admin
-
-
 routerv2.put('/:model/:id', bearerAuth, permissions('updateMajor'), handleUpdate);//for regOfficer and admin
-// routerv2.put('/:model2/:id', bearerAuth, permissions('updateCompany'), handleUpdate);//for compOwner and admin
-
 routerv2.put('/:model/:id', bearerAuth, permissions('updateJob'), handleUpdate); //for admin only
 routerv2.delete('/:model/:id', bearerAuth, permissions('delete'), handleDelete);//for admin only
 
-
+// /company/1 ---> updateMajor
+// /job/1 ---->updateJob
 
 async function handleGetAll(req, res) {
   let allRecords = await req.model.get();
